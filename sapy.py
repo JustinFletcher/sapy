@@ -44,6 +44,7 @@ class Annealer(object):
 
         # Update the temperature.
         self.update_temperature()
+        print(self.temperature)
 
         # Store the current state.
         self.state.store()
