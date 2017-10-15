@@ -10,4 +10,4 @@ def csa_temperature(i, init_temp):
 # FSA temperature function.
 def fsa_temperature(i, init_temp):
 
-        return(init_temp / (i + 1))
+        return(init_temp / (float(i))
