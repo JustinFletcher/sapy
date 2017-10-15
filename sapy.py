@@ -23,6 +23,7 @@ class Annealer(object):
         self.temperature_function = temperature_function
         self.acceptance_function = acceptance_function
         self.initial_temperature = initial_temperature
+        self.temperature = initial_temperature
 
         # Intialize the annealing state variables.
         self.epoch = 0
