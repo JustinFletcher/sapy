@@ -16,8 +16,7 @@ class TensorFlowPerturberFSA(object):
 
                 # FSA perturbation.
                 p = tf.multiply(self.learning_rate,
-                                np.pi *
-                                (tf.random_uniform(v.get_shape()) - 0.5),
+                                tf.tan(np.pi * (tf.random_uniform(v.get_shape()) - 0.5)),
                                 name="make_perturbation")
 
                 # Add an op that perturbs this trainable var
