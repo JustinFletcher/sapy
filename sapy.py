@@ -42,6 +42,7 @@ class Annealer(object):
         # Incement the epoch count.
         self.epoch = self.epoch + 1
 
+        print(self.temperature)
         # Update the temperature.
         self.update_temperature()
         print(self.temperature)
