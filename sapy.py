@@ -24,16 +24,21 @@ class Annealer(object):
         self.temperature_function = temperature_function
         self.acceptance_function = acceptance_function
         self.initial_temperature = initial_temperature
-        self.temperature = initial_temperature
 
         # Intialize the annealing state variables.
         self.epoch = 0
+        self.temperature = initial_temperature
         self.current_cost = []
 
     def update_temperature(self):
 
         self.temperature = self.temperature_function(self.epoch,
                                                      self.initial_temperature)
+
+    def reanneal(self):
+
+        self.epoch = 0
+        self.temperature = self.initial_temperature
 
     def __call__(self, input_data=[]):
 
