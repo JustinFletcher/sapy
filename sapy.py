@@ -44,12 +44,12 @@ class Annealer(object):
         # Incement the epoch count.
         self.epoch = self.epoch + 1
 
-        print("self.epoch = %.d" % self.epoch)
+        # print("self.epoch = %.d" % self.epoch)
 
         # Update the temperature.
         self.update_temperature()
 
-        print("self.temperature = %.6f" % self.temperature)
+        # print("self.temperature = %.6f" % self.temperature)
 
         # Store the current state.
         self.state.store()
@@ -63,30 +63,30 @@ class Annealer(object):
         # Compute the cost function delta induced by this state.
         cost_delta = candidate_cost - self.current_cost
 
-        print("cost_delta = %.6f" % cost_delta)
+        # print("cost_delta = %.6f" % cost_delta)
 
         # If the candidate state reduces the cost...
         if(cost_delta <= 0.0):
 
-            print("Accept 1")
+            # print("Accept 1")
             # ...accept the candidate state implicitly by updating the cost.
             self.current_cost = candidate_cost
 
         # If the cost is increased...
         else:
 
-            print('np.exp(-d / t) = %.9f' % np.exp(-cost_delta / self.temperature))
+            # print('np.exp(-d / t) = %.9f' % np.exp(-cost_delta / self.temperature))
             # ...and if the acceptance function returns True...
             if(self.acceptance_function(self.temperature, cost_delta)):
 
-                print("Accept 2")
+                # print("Accept 2")
                 # ...accept the state implicitly by updating the cost.
                 self.current_cost = candidate_cost
 
             # If not, we reject the state by restoring the prior state.
             else:
 
-                print("Reject")
+                # print("Reject")
                 self.state.restore()
 
         return()
