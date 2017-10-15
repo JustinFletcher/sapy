@@ -4,7 +4,7 @@ import numpy as np
 # CSA temperature function.
 def csa_temperature(i, init_temp):
 
-        return(init_temp / np.log((i + 1)))
+        return(init_temp / np.log(float(i)))
 
 
 # FSA temperature function.
