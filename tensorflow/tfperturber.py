@@ -53,6 +53,8 @@ class TensorFlowPerturberCSA(object):
                 # Add an op that perturbs this trainable var
                 perturb_state.append(tf.assign_add(v, p, name="perturb_state"))
 
+            self.perturb_state = perturb_state
+
         def start(self, sess):
 
             self.sess = sess
