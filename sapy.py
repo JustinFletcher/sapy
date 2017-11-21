@@ -40,7 +40,7 @@ class Annealer(object):
         self.epoch = 0
         self.temperature = self.initial_temperature
 
-    def __call__(self, input_data=[]):
+    def __call__(self, pertub_params=[], input_data=[]):
 
         if self.epoch == 0:
 
@@ -60,7 +60,7 @@ class Annealer(object):
         self.state.store()
 
         # Create a new state using the perturbation function.
-        self.state_perturber.perturb()
+        self.state_perturber.perturb(pertub_params)
 
         # Compute the cost of this state using the provided grader.
         candidate_cost = self.state_cost_evaluator.evaluate(input_data)
