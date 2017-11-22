@@ -87,7 +87,7 @@ class TensorFlowPerturberLayerwiseFSA(object):
 
                 do = tf.tan(np.pi * (tf.random_uniform(v.get_shape()) - 0.5))
 
-                do_not = tf.zeroes(v.get_shape())
+                do_not = tf.zeros(v.get_shape())
 
                 p = tf.cond(tv_select == tv_num, lambda: do, lambda: do_not)
 
