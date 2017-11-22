@@ -89,7 +89,7 @@ class TensorFlowPerturberLayerwiseFSA(object):
 
                 do_not = tf.zeros(v.get_shape())
 
-                p = tf.cond(tv_select == tv_num, lambda: do, lambda: do_not)
+                p = tf.cond(tf.equal(tv_select, tv_num), lambda: do, lambda: do_not)
 
                 scaled_p = tf.multiply(self.learning_rate, p,
                                        name="make_perturbation")
