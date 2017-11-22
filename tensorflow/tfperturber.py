@@ -76,7 +76,7 @@ class TensorFlowPerturberLayerwiseFSA(object):
 
             self.learning_rate = learning_rate
 
-            tv_select = tf.placeholder(tf.int32, shape=[], name="tv_select")
+            self.tv_select = tf.placeholder(tf.int32, shape=[], name="tv_select")
 
             perturb_state = []
 
@@ -107,7 +107,7 @@ class TensorFlowPerturberLayerwiseFSA(object):
         def perturb(self, tv_select):
 
             return(self.sess.run(self.perturb_state,
-                                 feed_dict={tv_select: tv_select}))
+                                 feed_dict={self.tv_select: tv_select}))
 
 
 class TensorFlowPerturberCSA(object):
