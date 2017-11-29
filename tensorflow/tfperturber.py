@@ -65,7 +65,7 @@ class TensorFlowPerturberFSA(object):
 
             self.sess = sess
 
-        def perturb(self):
+        def perturb(self, _):
 
             return(self.sess.run(self.perturb_state))
 
@@ -138,6 +138,6 @@ class TensorFlowPerturberCSA(object):
 
             self.sess = sess
 
-        def perturb(self):
+        def perturb(self, _):
 
             return(self.sess.run(self.perturb_state))
