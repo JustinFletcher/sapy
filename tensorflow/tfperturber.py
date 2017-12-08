@@ -101,7 +101,7 @@ class GSATensorFlowPerturber(object):
 
             self.sess = sess
 
-        def perturb(self):
+        def perturb(self, _):
 
             return(self.sess.run(self.perturb_state))
 
