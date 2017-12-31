@@ -82,13 +82,18 @@ class GSATensorFlowPerturber(object):
             for v in tf.trainable_variables():
 
                 # GSA perturbation.
-                p = tf.cos(2.0 * np.pi * tf.random_uniform(v.get_shape())) * tf.sqrt(-2.0 * tf.log(tf.random_uniform(v.get_shape())))
 
-                beta = tf.div(1.0, (3.0 - q))
+                u_1 = tf.random_uniform(v.get_shape())
 
-                p_adj = tf.div(p, tf.sqrt(tf.multiply(beta, (3.0 - q))))
+                u_2 = tf.random_uniform(v.get_shape())
 
-                scaled_p = tf.multiply(self.learning_rate, p_adj,
+                p_cos = tf.cos(2.0 * np.pi * u_1)
+
+                p_sqrt = tf.sqrt(2 - (2 * (u_2 ** (1 - ((1 + q) / (3 - q))))) / (1 - q))
+
+                p = tf.multiply(p_cos, p_sqrt)
+
+                scaled_p = tf.multiply(self.learning_rate, p,
                                        name="make_perturbation")
 
                 # Add an op that perturbs this trainable var
@@ -220,11 +225,18 @@ class LayerwiseGSATensorFlowPerturber(object):
                 # TODO: Determine if conv ops have 0s we're overwriting
 
                 # GSA perturbation.
-                p_base = tf.cos(2.0 * np.pi * tf.random_uniform(v.get_shape())) * tf.sqrt(-2.0 * tf.log(tf.random_uniform(v.get_shape())))
 
-                beta = tf.div(1.0, (3.0 - q))
+                u_1 = tf.random_uniform(v.get_shape())
 
-                do = tf.div(p_base, tf.sqrt(tf.multiply(beta, (3.0 - q))))
+                u_2 = tf.random_uniform(v.get_shape())
+
+                p_cos = tf.cos(2.0 * np.pi * u_1)
+
+                p_sqrt = tf.sqrt(2 - (2 * (u_2 ** (1 - ((1 + q) / (3 - q))))) / (1 - q))
+
+                p = tf.multiply(p_cos, p_sqrt)
+
+                do = p
 
                 do_not = tf.zeros(v.get_shape())
 
